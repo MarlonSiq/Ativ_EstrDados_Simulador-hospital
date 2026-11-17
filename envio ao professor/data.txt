@@ -1,0 +1,36 @@
+# DADOS DE EXEMPLO PARA A APRESENTACAO
+# Linhas que comecam com # sao ignoradas. Pode editar, apagar ou acrescentar linhas.
+#
+# Medico:   M;nome;especialidade(1 a 20)
+# Paciente: P;nome;idade;prioridade(1 a 5);especialidade(1 a 20);sintomas
+#
+# Especialidades: 1 Emergencia, 2 Clinico Geral, 3 Pediatria, 4 Cirurgia Geral,
+# 5 Ginecologia e Obstetricia, 6 Ortopedia e Traumatologia, 7 Anestesiologia,
+# 8 Radiologia, 9 Medicina Intensiva (UTI), 10 Cardiologia, 11 Neurologia,
+# 12 Pneumologia, 13 Infectologia, 14 Psiquiatria, 15 Neurocirurgia,
+# 16 Cirurgia Cardiovascular, 17 Patologia Clinica / Medicina Laboratorial,
+# 18 Dermatologia, 19 Oftalmologia, 20 Otorrinolaringologia
+
+# ----- Medicos -----
+M;Joao Pereira Lima;1
+M;Irene Novaes Rocha;1
+M;Ana Souza;2
+M;Paula Mendes;3
+M;Glória Nascimento;4
+M;Marta Reis;6
+M;Carlos Miranda Silva;10
+M;Rafael Costa;11
+M;Cristina Yang;10
+M;Ricardo Webb;17
+M;Evandro Andrade;8
+M;Carolina Estiano;9
+
+# ----- Pacientes -----
+P;Maria Silva;70;5;2;Gripe e dor de garganta
+P;Pedro Alves;45;1;10;Dor forte no peito e falta de ar
+P;Luiza Rocha;8;3;3;Febre alta ha dois dias
+P;Roberto Nunes;60;2;11;Dor de cabeca intensa e tontura
+P;Camila Dias;25;4;2;Dor nas costas leve
+P;Fernando Melo;33;1;1;Acidente de moto com muito sangramento
+P;Helena Prado;52;3;6;Queda com suspeita de fratura no punho
+P;Tiago Barros;19;5;2;Consulta de rotina e atestado
