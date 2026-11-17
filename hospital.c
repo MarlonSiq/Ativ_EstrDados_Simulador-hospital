@@ -187,7 +187,7 @@ int lerInteiro(char *mensagem, int minimo, int maximo) {
 /* Espera o usuario apertar ENTER (para ele conseguir ler o resultado) */
 void pausar(void) {
     char tmp[10];
-    printf("\n%s  Pressione ENTER para voltar ao menu...%s", corCinza(), corReset());
+    printf("\n%s  Pressione ENTER para voltar ao menu.%s", corCinza(), corReset());
     lerTexto(tmp, 10);
 }
 
@@ -577,20 +577,22 @@ void cadastrarMedico(THospital *h) {
     TMedico *m;
 
     imprimirTitulo("CADASTRAR MEDICO");
-    printf("Nome: ");
+    printf("Nome completo: ");
     lerTexto(nome, 50);
     listarEspecialidades();
-    especialidade = lerInteiro("Escolha a especialidade [1-20]: ", 1, 20);
+    especialidade = lerInteiro("Digite a especialidade [1-20]: ", 1, 20);
 
     m = criarMedico(h, nome, especialidade);
     if (!m) {
         imprimirErro("Sem memoria para cadastrar.");
         return;
     }
-    printf("\n%s+--------------------------------------------+%s\n", corVerde(), corReset());
-    printf("%s|%s  MEDICO CADASTRADO COM SUCESSO\n", corVerde(), corReset());
+    printf("\n%s+--------------------------------------------+%s\n\n", corVerde(), corReset());
+    imprimirSucesso("MEDICO CADASTRADO");
+    printf("%s|%s\n", corVerde(), corReset());
+    // printf("%s|  [OK]%s MEDICO CADASTRADO COM SUCESSO\n", corVerde(), corReset());
     printf("%s|%s  Codigo do medico: %s%s[%d]%s\n", corVerde(), corReset(), corNegrito(), corAmarelo(), m->codigo, corReset());
-    printf("%s|%s  %s - %s\n", corVerde(), corReset(), m->nome, nomeEspecialidade(m->especialidade));
+    printf("%s|%s  %s - %s\n\n", corVerde(), corReset(), m->nome, nomeEspecialidade(m->especialidade));
     printf("%s+--------------------------------------------+%s\n", corVerde(), corReset());
 }
 
@@ -601,10 +603,10 @@ void cadastrarPaciente(THospital *h) {
     TPaciente *p;
 
     imprimirTitulo("CADASTRAR PACIENTE");
-    printf("Nome: ");
+    printf("Nome completo: ");
     lerTexto(nome, 50);
-    idade = lerInteiro("Idade: ", 0, 130);
-    printf("Sintomas: ");
+    idade = lerInteiro("Idade: ", 0, 121);
+    printf("Sintoma(s): ");
     lerTexto(sintomas, 100);
     listarEspecialidades();
     especialidade = lerInteiro("Especialidade necessaria [1-20]: ", 1, 20);
@@ -617,11 +619,13 @@ void cadastrarPaciente(THospital *h) {
         return;
     }
     /* mostra o codigo gerado para usar depois na busca (ABB) */
-    printf("\n%s+--------------------------------------------+%s\n", corVerde(), corReset());
-    printf("%s|%s  PACIENTE CADASTRADO E COLOCADO NA FILA\n", corVerde(), corReset());
+    printf("\n%s+--------------------------------------------+%s\n\n", corVerde(), corReset());
+    imprimirSucesso("PACIENTE CADASTRADO E COLOCADO NA FILA");
+    // printf("%s|  [OK]%s PACIENTE CADASTRADO E COLOCADO NA FILA\n", corVerde(), corReset());
+    printf("%s|%s\n", corVerde(), corReset());
     printf("%s|%s  Codigo do paciente: %s%s[%d]%s  (use na busca)\n", corVerde(), corReset(), corNegrito(), corAmarelo(), p->codigo, corReset());
     printf("%s|%s  %s, %d anos\n", corVerde(), corReset(), p->nome, p->idade);
-    printf("%s|%s  %sPrioridade %d - %s%s | %s\n", corVerde(), corReset(), corPrioridade(p->prioridade),
+    printf("%s|%s  %sPrioridade %d - %s%s | %s\n\n", corVerde(), corReset(), corPrioridade(p->prioridade),
            p->prioridade, nomePrioridade(p->prioridade), corReset(), nomeEspecialidade(p->especialidade));
     printf("%s+--------------------------------------------+%s\n", corVerde(), corReset());
 }
@@ -649,7 +653,7 @@ void carregarDados(THospital *h, char *nomeArquivo) {
     }
     arquivo = fopen(nomeArquivo, "r");
     if (arquivo == NULL) {
-        imprimirErro("Nao encontrei o arquivo data.txt (ele precisa estar na mesma pasta do programa).");
+        imprimirErro("O arquivo data.txt não foi encontrado (verifique com o suporte do hospital).");
         return;
     }
 
@@ -670,7 +674,9 @@ void carregarDados(THospital *h, char *nomeArquivo) {
     fclose(arquivo);
 
     h->dadosCarregados = 1;
-    snprintf(msg, 100, "%d medicos e %d pacientes carregados.", totalMedicos, totalPacientes);
+    snprintf(msg, 100, "ARQUIVO CARREGADO: Adicionado %d medico%s e %d paciente%s.", 
+         totalMedicos, (totalMedicos == 1 ? "" : "s"), 
+         totalPacientes, (totalPacientes == 1 ? "" : "s"));
     imprimirSucesso(msg);
 }
 
@@ -1016,7 +1022,7 @@ int main(void) {
 
     do {
         mostrarMenu(&hospital);
-        opcao = lerInteiro("Escolha uma opcao [0-12]: ", 0, 12);
+        opcao = lerInteiro("Escolha uma opção [0-12]: ", 0, 12);
 
         if (opcao == 1) menuBusca(&hospital);
         else if (opcao == 2) cadastrarMedico(&hospital);

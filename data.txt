@@ -12,12 +12,18 @@
 # 18 Dermatologia, 19 Oftalmologia, 20 Otorrinolaringologia
 
 # ----- Medicos -----
+M;Joao Pereira Lima;1
+M;Irene Novaes Rocha;1
 M;Ana Souza;2
-M;Carlos Lima;10
-M;Marta Reis;6
-M;Joao Pereira;1
 M;Paula Mendes;3
+M;Glória Nascimento;4
+M;Marta Reis;6
+M;Carlos Miranda Silva;10
 M;Rafael Costa;11
+M;Cristina Yang;10
+M;Ricardo Webb;17
+M;Evandro Andrade;8
+M;Carolina Estiano;9
 
 # ----- Pacientes -----
 P;Maria Silva;70;5;2;Gripe e dor de garganta
